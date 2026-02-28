@@ -200,7 +200,9 @@ app.get('/', (req, res) => {
     
 });
 
-const PORT = process.env.PORT || 3000;  // Render가 PORT 환경변수 자동으로 줌 (보통 10000번대)
+const PORT = process.env.PORT || 3000;
+
+// listen 부분 완전 교체 (localhost 절대 쓰지 말기!)
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);  // localhost 빼고 그냥 포트만 출력
 });
