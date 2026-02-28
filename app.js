@@ -156,6 +156,48 @@ app.post('/recommend', (req, res) => {
     const buttons = `<div style="margin-top:12px;padding:16px;background:#f8f9fa;border-radius:10px;border:1px solid #dee2e6;"><p style="margin:0 0 12px 0;font-size:14px;font-weight:bold;color:#333;line-height:1.6;">💡 미래 직업 선택과 관련하여 궁금한 점이 있으시면, 아래의 L.L.M. 모델 중 본인이 가입한 모델을 눌러 문의해 보세요.</p><div style="display:flex;flex-direction:column;gap:8px;"><a href="https://chat.openai.com" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#10a37f;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">💬 ChatGPT &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">창작 · 글쓰기 · 대화에 강함</span></button></a><a href="https://gemini.google.com" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#4285f4;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">✨ Gemini &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">구글 연동 · 코딩에 강함</span></button></a><a href="https://claude.ai" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#d97706;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">🤖 Claude &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">심층 분석 · 문서 작성에 강함</span></button></a><a href="https://www.perplexity.ai" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#6366f1;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">🔎 Perplexity &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">정보검색 · 최신 웹 요약에 강함</span></button></a><a href="https://grok.com" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#1d9bf0;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">⚡ Grok &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">심층 질문 · 뉴스 분석에 강함</span></button></a><a href="https://chat.deepseek.com" target="_blank" style="text-decoration:none;"><button style="width:100%;padding:12px 16px;font-size:14px;font-weight:bold;background:#e53e3e;color:white;border:none;border-radius:8px;cursor:pointer;text-align:left;">🐋 DeepSeek &nbsp;|&nbsp; <span style="font-weight:normal;font-size:13px;">무료 · 코딩 · 논리 추론에 강함</span></button></a></div></div>`;
 
     res.json({ text, buttons });
+// 브라우저에서 바로 열어볼 수 있는 홈페이지 추가 (GET /)
+app.get('/', (req, res) => {
+  res.set('Content-Type', 'text/html; charset=utf-8');
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+      <meta charset="UTF-8">
+      <title>미래 직업 추천 앱</title>
+      <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; background: #f9f9f9; }
+        h1 { color: #2c3e50; text-align: center; }
+        form { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        label { display: block; margin: 15px 0 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; background: #27ae60; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #219653; }
+        p.note { margin-top: 30px; font-size: 0.9em; color: #777; text-align: center; }
+      </style>
+    </head>
+    <body>
+      <h1>미래 직업 추천 테스트</h1>
+      <p>이름, 출생년도, 자기소개를 입력하고 추천 받아보세요!</p>
+      
+      <form action="/recommend" method="POST">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" placeholder="예: 동수" required>
+        
+        <label for="birthYear">출생년도</label>
+        <input type="number" id="birthYear" name="birthYear" placeholder="예: 1995" required>
+        
+        <label for="description">자기소개 / 꿈 / 관심 분야</label>
+        <textarea id="description" name="description" rows="6" placeholder="예: AI와 개발에 관심 많아요. 창의적인 일을 하고 싶습니다."></textarea>
+        
+        <button type="submit">미래 직업 추천 받기</button>
+      </form>
+      
+      <p class="note">※ 추천 결과는 JSON 형식으로 표시됩니다. (브라우저에서 보기 불편하면 Postman 사용 추천)</p>
+    </body>
+    </html>
+  `);
+    
 });
 
 const PORT = process.env.PORT || 3000;  // Render가 PORT 환경변수 자동으로 줌 (보통 10000번대)
