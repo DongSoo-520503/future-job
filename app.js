@@ -196,13 +196,12 @@ app.get('/', (req, res) => {
       <p class="note">※ 추천 결과는 JSON 형식으로 표시됩니다. (브라우저에서 보기 불편하면 Postman 사용 추천)</p>
     </body>
     </html>
-  `);
-    
+  `);    
 });
 
 const PORT = process.env.PORT || 3000;
-
 // listen 부분 완전 교체 (localhost 절대 쓰지 말기!)
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is listening on port ${PORT}`);  // localhost 빼고 그냥 포트만 출력
 });
+
