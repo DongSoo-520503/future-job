@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>22개국 미래 직업 진단</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(160deg, #fce4ec 0%, #e8eaf6 40%, #e0f7fa 100%);
+            font-family: 'Noto Sans KR', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 24px 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -120px; left: -120px;
+            width: 420px; height: 420px;
+            background: radial-gradient(circle, rgba(255,183,213,0.55) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -120px; right: -100px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(165,214,255,0.5) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.84);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.95);
+            border-radius: 28px;
+            padding: 22px 44px 22px;
+            width: 100%;
+            max-width: 650px;
+            box-shadow:
+                0 4px 24px rgba(180,150,255,0.12),
+                0 24px 56px rgba(120,120,200,0.13),
+                inset 0 1px 0 rgba(255,255,255,1);
+            animation: fadeUp 0.65s cubic-bezier(.16,1,.3,1) both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── 제목 박스 ── */
+        .title-box {
+            background: linear-gradient(135deg, #a78bfa 0%, #f0abfc 55%, #93c5fd 100%);
+            border-radius: 50px;
+            padding: 11px 36px;
+            text-align: center;
+            margin-bottom: 10px;
+            box-shadow: 0 6px 24px rgba(167,139,250,0.35);
+        }
+        .title-box h1 {
+            font-size: 24px;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.3px;
+            text-shadow: 0 1px 6px rgba(100,60,180,0.25);
+        }
+
+        .divider {
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, #c4b5fd, #93c5fd, transparent);
+            margin-bottom: 14px;
+            border-radius: 2px;
+        }
+
+        /* ── 폼 그룹 ── */
+        .form-group {
+            margin-bottom: 11px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 4px;
+        }
+        .label-main {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #2d2250;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 4px;
+        }
+        .label-main .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px; height: 24px;
+            border-radius: 7px;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        .label-hint {
+            font-size: 12.5px;
+            font-weight: 400;
+            color: #7c6faa;
+            background: rgba(167,139,250,0.09);
+            border-left: 3px solid #c4b5fd;
+            padding: 3px 10px;
+            border-radius: 0 8px 8px 0;
+            line-height: 1.65;
+        }
+
+        .icon-name    { background: #fce7f3; }
+        .icon-dob     { background: #ede9fe; }
+        .icon-country { background: #e0f2fe; }
+        .icon-ability { background: #fef3c7; }
+        .icon-riasec  { background: #dcfce7; }
+        .icon-big5    { background: #ffe4e6; }
+
+        /* ── 입력 요소 ── */
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 9px 17px;
+            background: rgba(245,243,255,0.7);
+            border: 1.5px solid #ddd6fe;
+            border-radius: 12px;
+            color: #2d2250;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="text"]::placeholder { color: #c4b5fd; }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239f7aea' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 38px;
+            cursor: pointer;
+        }
+
+        input:focus, select:focus {
+            border-color: #a78bfa;
+            background: rgba(237,233,254,0.6);
+            box-shadow: 0 0 0 3.5px rgba(167,139,250,0.18);
+        }
+
+        /* ── 버튼 ── */
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            background: linear-gradient(135deg, #a78bfa 0%, #f0abfc 50%, #93c5fd 100%);
+            background-size: 200% 200%;
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s, background-position 0.5s;
+            box-shadow: 0 6px 24px rgba(167,139,250,0.45);
+            text-shadow: 0 1px 3px rgba(100,60,180,0.2);
+        }
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(167,139,250,0.55);
+            background-position: right center;
+        }
+        .submit-btn:active {
+            transform: translateY(0px);
+            box-shadow: 0 3px 12px rgba(167,139,250,0.3);
+        }
+        .submit-btn.loading {
+            pointer-events: none;
+            opacity: 0.75;
+        }
+
+        /* ── 모바일 대응 media query ── */
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 12px;
+            }
+
+            .card {
+                padding: 20px 24px;
+                border-radius: 20px;
+                max-width: 100%;
+                box-shadow: 0 4px 16px rgba(120,120,200,0.15);
+            }
+
+            .title-box {
+                padding: 10px 24px;
+            }
+            .title-box h1 {
+                font-size: 22px;
+            }
+
+            input[type="text"],
+            input[type="date"],
+            select {
+                font-size: 16px;
+                padding: 14px 16px;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .label-main {
+                font-size: 15px;
+            }
+            .label-hint {
+                font-size: 13px;
+            }
+
+            .submit-btn {
+                padding: 14px;
+                font-size: 17px;
+            }
+
+            select {
+                padding-right: 40px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .card {
+                padding: 16px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+
+        <!-- 제목 박스 -->
+        <div class="title-box">
+            <h1>미래 직업 추천 시스템</h1>
+        </div>
+        <p style="text-align:center; font-size:13px; color:#9189b0; margin-bottom:12px; margin-top:-4px;">RIASEC × Big 5 기반 AI 직업 적합도 분석</p>
+
+        <div class="divider"></div>
+
+        <form id="jobForm">
+
+            <div class="form-group">
+                <label>
+                    <div class="label-main">
+                        <span class="icon icon-name">👤</span> 성명
+                    </div>
+                </label>
+                <input type="text" id="name" placeholder="이름을 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <div class="label-main">
+                        <span class="icon icon-dob">📅</span> 생년월일
+                    </div>
+                    <div class="label-hint">생년월일을 직접 입력하면, 25세 무렵의 고소득 유망 직업을 추천합니다.</div>
+                </label>
+                <input type="text" id="dob" placeholder="예) 2010-03-15  (YYYY-MM-DD)" pattern="\d{4}-\d{2}-\d{2}" required>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <div class="label-main">
+                        <span class="icon icon-country">🌍</span> 국가 (22개국)
+                    </div>
+                    <div class="label-hint">국적이 아니라, 미래에 취업할 국가를 의미합니다.</div>
+                </label>
+                <select id="country">
+                    <option value="대한민국">대한민국</option>
+                    <option value="미국">미국</option>
+                    <option value="중국">중국</option>
+                    <option value="일본">일본</option>
+                    <option value="러시아">러시아</option>
+                    <option value="인도">인도</option>
+                    <option value="독일">독일</option>
+                    <option value="영국">영국</option>
+                    <option value="프랑스">프랑스</option>
+                    <option value="이탈리아">이탈리아</option>
+                    <option value="캐나다">캐나다</option>
+                    <option value="호주">호주</option>
+
+                    <option value="멕시코">멕시코</option>
+                    <option value="베트남">베트남</option>
+                    <option value="브라질">브라질</option>
+                    <option value="사우디아라비아">사우디아라비아</option>
+                    <option value="스위스">스위스</option>
+                    <option value="싱가포르">싱가포르</option>
+                    <option value="이스라엘">이스라엘</option>
+                    <option value="인도네시아">인도네시아</option>
+
+                    <option value="나이지리아">나이지리아</option>
+                    <option value="남아프리카공화국">남아프리카공화국</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <div class="label-main">
+                        <span class="icon icon-ability">⭐</span> 지능/성적/노력
+                    </div>
+                    <div class="label-hint">상 중 하 구분은 향후 석사 및 박사 이상 공부, 학사 및 석사 이하 공부, 고졸 및 전문대 수준의 공부가 가능한지를 기준으로 삼지만, 어느 것을 선택하더라도 사회적 명예가 다르고 직업이 달라질지언정, 고소득 직업을 추천해 드립니다. 이 직업은 최종 목표이며 많은 노력이 필요합니다.</div>
+                </label>
+                <select id="ability">
+                    <option value="상">상</option>
+                    <option value="중">중</option>
+                    <option value="하">하</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <div class="label-main">
+                        <span class="icon icon-riasec">🧩</span> 직업흥미유형 (RIASEC)
+                    </div>
+                    <div class="label-hint">청소년들이 선택하기 어려우면, 부모나 선생님들의 도움을 받아 선택합니다.</div>
+                </label>
+                <select id="riasec">
+                    <option value="R">🔧 만들고 조작하는 걸 좋아해요 — 기계·컴퓨터·도구를 직접 다루거나 만드는 것이 재미있는 편이에요</option>
+                    <option value="I">🔬 파고들고 연구하는 걸 좋아해요 — 왜 그런지 원리를 찾고, 데이터나 과학적 사실을 탐구하는 편이에요</option>
+                    <option value="A">🎨 만들고 표현하는 걸 좋아해요 — 그림·영상·디자인·글쓰기 등 새로운 것을 창작하는 편이에요</option>
+                    <option value="S">🤝 돕고 함께하는 걸 좋아해요 — 사람들과 어울리고 돌보고 가르치는 일이 보람 있는 편이에요</option>
+                    <option value="E">🚀 이끌고 도전하는 걸 좋아해요 — 목표를 세우고 사람들을 설득하거나 이끄는 것이 잘 맞는 편이에요</option>
+                    <option value="C">📋 정리하고 꼼꼼히 관리하는 걸 좋아해요 — 규칙에 따라 정확하게 기록하고 체계적으로 일하는 편이에요</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <div class="label-main">
+                        <span class="icon icon-big5">🧠</span> 개인성향 (Big 5)
+                    </div>
+                    <div class="label-hint">본인이 선택할 수 있으나, 이 항목도 부모나 선생님들의 도움을 받아 선택합니다.</div>
+                </label>
+                <select id="big5">
+                    <option value="O">🌈 새로운 것에 호기심이 많아요 — 새 아이디어나 변화를 즐기고 상상력이 풍부한 편이에요</option>
+                    <option value="C">📌 계획적이고 꼼꼼한 편이에요 — 목표를 세우고 끝까지 책임감 있게 해내는 편이에요</option>
+                    <option value="E">😄 사람들과 어울리는 걸 좋아해요 — 여럿이 함께하는 환경에서 활발하게 활동하는 편이에요</option>
+                    <option value="A">💛 배려심이 많고 협조적이에요 — 다른 사람을 믿고 돕는 것이 자연스러운 편이에요</option>
+                    <option value="N">🛡️ 안전과 위험에 민감한 편이에요 — 작은 위험도 미리 감지하고 대비하려는 신중한 편이에요</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">✨ 진단 결과 보기</button>
+        </form>
+
+    </div>
+
+<script>
+  document.getElementById('jobForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = '⏳ 분석 중...';
+    btn.classList.add('loading');
+
+    const formData = {
+      name:    document.getElementById('name').value,
+      dob:     document.getElementById('dob').value,
+      country: document.getElementById('country').value,
+      ability: document.getElementById('ability').value,
+      riasec:  document.getElementById('riasec').value.charAt(0),
+      big5:    document.getElementById('big5').value.charAt(0)
+    };
+
+    try {
+      const response = await fetch('/recommend', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        alert(data.error);
+      } else {
+        const newWin = window.open('', '_blank', 'width=720,height=860,scrollbars=yes');
+        newWin.document.write(`<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>진단 결과</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: linear-gradient(160deg, #fce4ec 0%, #e8eaf6 40%, #e0f7fa 100%);
+      min-height: 100vh;
+      padding: 36px 20px;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: -100px; left: -100px;
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(255,183,213,0.5) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .card {
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.95);
+      border-radius: 24px;
+      padding: 36px 40px;
+      max-width: 660px;
+      margin: 0 auto;
+      box-shadow: 0 24px 56px rgba(120,120,200,0.13);
+      animation: fadeUp 0.6s cubic-bezier(.16,1,.3,1) both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .title-box {
+      background: linear-gradient(135deg, #a78bfa 0%, #f0abfc 55%, #93c5fd 100%);
+      border-radius: 50px;
+      padding: 14px 32px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 20px rgba(167,139,250,0.35);
+    }
+    .title-box h2 { font-size: 18px; font-weight: 900; color: #fff; }
+    .divider {
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, #c4b5fd, #93c5fd, transparent);
+      margin: 0 0 22px;
+    }
+    pre {
+      white-space: pre-wrap;
+      line-height: 2;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 14px;
+      color: #2d2250;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="title-box"><h2>🌏 진단 결과</h2></div>
+  <div class="divider"></div>
+  <pre>${data.text}</pre>
+  <div class="divider" style="margin-top:22px;"></div>
+  ${data.buttons}
+</div>
+</body>
+</html>`);
+        newWin.document.close();
+      }
+    } catch (err) {
+      console.error(err);
+      alert('서버 연결 오류가 발생했습니다.');
+    } finally {
+      btn.textContent = '✨ 진단 결과 보기';
+      btn.classList.remove('loading');
+    }
+  });
+</script>
+</body>
+</html>
