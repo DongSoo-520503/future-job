@@ -15,7 +15,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 6px 10px; /* ← index_C.html처럼 축소 */
+            padding: 0 8px;
             position: relative;
             overflow-x: hidden;
         }
@@ -43,7 +43,7 @@
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255,255,255,0.95);
             border-radius: 28px;
-            padding: 10px 16px 12px; /* ← index_C.html처럼 컴팩트 */
+            padding: 6px 10px 8px;
             width: 100%;
             max-width: 650px;
             box-shadow:
@@ -58,16 +58,17 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
+        /* ── 제목 박스 ── */
         .title-box {
             background: linear-gradient(135deg, #a78bfa 0%, #f0abfc 55%, #93c5fd 100%);
             border-radius: 50px;
-            padding: 7px 20px; /* ← 축소 */
+            padding: 6px 16px;
             text-align: center;
-            margin-bottom: 7px;
+            margin-bottom: 3px;
             box-shadow: 0 6px 24px rgba(167,139,250,0.35);
         }
         .title-box h1 {
-            font-size: 16px; /* ← index_C.html처럼 작게 */
+            font-size: 16px;
             font-weight: 900;
             color: #fff;
             letter-spacing: -0.3px;
@@ -75,22 +76,17 @@
         }
 
         .divider {
-            height: 1.5px;
-            background: linear-gradient(90deg, transparent, #c4b5fd, #93c5fd, transparent);
-            margin-bottom: 7px;
-            border-radius: 2px;
+            display: none;
         }
 
+        /* ── 폼 그룹 ── */
         .form-group {
-            margin-bottom: 6px; /* ← index_C.html처럼 타이트 */
-        }
-
-        label {
+            margin-bottom: 4px;
             display: block;
             margin-bottom: 1px;
         }
         .label-main {
-            font-size: 12px; /* ← index_C.html처럼 작게 */
+            font-size: 12px;
             font-weight: 700;
             color: #2d2250;
             display: flex;
@@ -107,6 +103,16 @@
             font-size: 11px;
             flex-shrink: 0;
         }
+        .label-hint {
+            font-size: 12.5px;
+            font-weight: 400;
+            color: #7c6faa;
+            background: rgba(167,139,250,0.09);
+            border-left: 3px solid #c4b5fd;
+            padding: 3px 10px;
+            border-radius: 0 8px 8px 0;
+            line-height: 1.65;
+        }
 
         .icon-name    { background: #fce7f3; }
         .icon-dob     { background: #ede9fe; }
@@ -115,11 +121,12 @@
         .icon-riasec  { background: #dcfce7; }
         .icon-big5    { background: #ffe4e6; }
 
+        /* ── 입력 요소 ── */
         input[type="text"],
         input[type="date"],
         select {
             width: 100%;
-            padding: 7px 11px; /* ← index_C.html처럼 작게 */
+            padding: 6px 10px;
             background: rgba(245,243,255,0.7);
             border: 1.5px solid #ddd6fe;
             border-radius: 10px;
@@ -148,10 +155,11 @@
             box-shadow: 0 0 0 3.5px rgba(167,139,250,0.18);
         }
 
+        /* ── 버튼 ── */
         .submit-btn {
             width: 100%;
-            padding: 9px;
-            margin-top: 5px;
+            padding: 8px;
+            margin-top: 3px;
             background: linear-gradient(135deg, #a78bfa 0%, #f0abfc 50%, #93c5fd 100%);
             background-size: 200% 200%;
             border: none;
@@ -180,28 +188,64 @@
             opacity: 0.75;
         }
 
+        /* ── 모바일 대응 media query ── */
         @media (max-width: 600px) {
-            body { padding: 6px 8px; }
-            .card { padding: 10px 14px 12px; border-radius: 18px; }
-            .title-box { padding: 7px 14px; }
-            .title-box h1 { font-size: 16px; }
-            input[type="text"], select { font-size: 13px; padding: 7px 10px; }
-            .form-group { margin-bottom: 6px; }
-            .label-main { font-size: 12px; }
-            .submit-btn { padding: 9px; font-size: 14px; }
-            select { padding-right: 36px; }
+            body {
+                padding: 0 6px;
+            }
+
+            .card {
+                padding: 6px 8px 8px;
+                border-radius: 18px;
+                max-width: 100%;
+                box-shadow: 0 4px 16px rgba(120,120,200,0.15);
+            }
+
+            .title-box {
+                padding: 6px 12px;
+            }
+            .title-box h1 {
+                font-size: 16px;
+            }
+
+            input[type="text"],
+            input[type="date"],
+            select {
+                font-size: 13px;
+                padding: 6px 9px;
+            }
+
+            .form-group {
+                margin-bottom: 6px;
+            }
+
+            .label-main {
+                font-size: 12px;
+            }
+
+            .submit-btn {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            select {
+                padding-right: 36px;
+            }
         }
 
         @media (max-width: 380px) {
-            .card { padding: 8px 12px 10px; }
+            .card {
+                padding: 5px 7px 7px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="card">
 
+        <!-- 제목 박스 -->
         <div class="title-box">
-            <h1>미래 직업 추천 시스템</h1>
+            <h1>미래 직업 추천</h1>
         </div>
 
         <div class="divider"></div>
@@ -220,16 +264,16 @@
             <div class="form-group">
                 <label>
                     <div class="label-main">
-                        <span class="icon icon-dob">📅</span> 출생연도 (2000 ~ 2029 범위내)
+                        <span class="icon icon-dob">📅</span> 출생연도 ( 2000 ~ 2029 범위내 )
                     </div>
                 </label>
-                <input type="text" id="dob" placeholder="예) 2010 (YYYY)" pattern="\d{4}" required>
+                <input type="text" id="dob" placeholder="2016  (YYYY)" pattern="\d{4}" required>
             </div>
 
             <div class="form-group">
                 <label>
                     <div class="label-main">
-                        <span class="icon icon-country">🌍</span> 취업 국가 (22개국)
+                        <span class="icon icon-country">🌍</span>취업 국가 ( 22개국 )
                     </div>
                 </label>
                 <select id="country">
@@ -258,19 +302,20 @@
                 </select>
             </div>
 
+            <!-- ✅ 여기부터: 지능/성적/노력(ability) 섹션만 변경 -->
             <div class="form-group">
                 <label>
                     <div class="label-main">
                         <span class="icon icon-ability">⭐</span> 지능/성적/노력 ( 학업 기간에 따라 취업시기가 달라질 수 있음 )
-
                     </div>
-                </label>
+               </label>
                 <select id="ability">
                     <option value="상">대학원 또는 박사 과정 학업 예정</option>
                     <option value="중">대학교 또는 대학원 과정 학업 예정</option>
                     <option value="하">실업고 또는 전문대 이하 학업 예정</option>
                 </select>
             </div>
+            <!-- ✅ 여기까지 변경 -->
 
             <div class="form-group">
                 <label>
@@ -278,6 +323,7 @@
                         <span class="icon icon-riasec">🧩</span> 직업흥미유형 (RIASEC)
                     </div>
                 </label>
+                <!-- ✅ 원본 그대로 복원 -->
                 <select id="riasec">
                     <option value="R">🔧 만들고 조작하는 걸 좋아해요 — 기계·컴퓨터·도구를 직접 다루거나 만드는 것이 재미있는 편이에요</option>
                     <option value="I">🔬 파고들고 연구하는 걸 좋아해요 — 왜 그런지 원리를 찾고, 데이터나 과학적 사실을 탐구하는 편이에요</option>
@@ -294,6 +340,7 @@
                         <span class="icon icon-big5">🧠</span> 개인성향 (Big 5)
                     </div>
                 </label>
+                <!-- ✅ 원본 그대로 복원 -->
                 <select id="big5">
                     <option value="O">🌈 새로운 것에 호기심이 많아요 — 새 아이디어나 변화를 즐기고 상상력이 풍부한 편이에요</option>
                     <option value="C">📌 계획적이고 꼼꼼한 편이에요 — 목표를 세우고 끝까지 책임감 있게 해내는 편이에요</option>
@@ -317,8 +364,8 @@
     btn.classList.add('loading');
 
     const formData = {
-      name:    document.getElementById('name').value.trim(),
-      dob:     document.getElementById('dob').value.trim(),
+      name:    document.getElementById('name').value,
+      dob:     document.getElementById('dob').value,
       country: document.getElementById('country').value,
       ability: document.getElementById('ability').value,
       riasec:  document.getElementById('riasec').value.charAt(0),
@@ -350,7 +397,7 @@
       font-family: 'Noto Sans KR', sans-serif;
       background: linear-gradient(160deg, #fce4ec 0%, #e8eaf6 40%, #e0f7fa 100%);
       min-height: 100vh;
-      padding: 36px 20px;
+      padding: 8px 4px;
     }
     body::before {
       content: '';
@@ -365,7 +412,8 @@
       backdrop-filter: blur(24px);
       border: 1px solid rgba(255,255,255,0.95);
       border-radius: 24px;
-      padding: 36px 40px;
+      overflow: hidden;
+      padding: 16px 8px;
       max-width: 660px;
       margin: 0 auto;
       box-shadow: 0 24px 56px rgba(120,120,200,0.13);
@@ -389,20 +437,12 @@
       background: linear-gradient(90deg, transparent, #c4b5fd, #93c5fd, transparent);
       margin: 0 0 22px;
     }
-    pre {
-      white-space: pre-wrap;
-      line-height: 2;
-      font-family: 'Noto Sans KR', sans-serif;
-      font-size: 14px;
-      color: #2d2250;
-    }
   </style>
 </head>
 <body>
 <div class="card">
-  <div class="title-box"><h2>🌏 진단 결과</h2></div>
-  <div class="divider"></div>
-  <pre>${data.text}</pre>
+  <div class="title-box"><h2>🌏 미래직업 추천결과</h2></div>
+  <pre style="white-space:pre-wrap; line-height:1.8; margin:0; font-family:'Noto Sans KR', sans-serif; font-size:14px; color:#2d2250;">${data.text}</pre>
   <div class="divider" style="margin-top:22px;"></div>
   ${data.buttons}
 </div>
