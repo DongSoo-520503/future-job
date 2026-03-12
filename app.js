@@ -45,6 +45,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// 이거 추가!
+app.get('/result.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'result.html'));
+});
+
 app.post('/recommend', (req, res) => {
   const { name, dob, country, ability, riasec, big5 } = req.body;
 
