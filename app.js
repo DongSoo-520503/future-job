@@ -135,5 +135,11 @@ app.post('/recommend', (req, res) => {
   });
 });
 
-const PORT = Number(process.env.PORT) || 3003;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// 새 코드 (추가)
+if (require.main === module) {
+  const PORT = Number(process.env.PORT) || 3002;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+module.exports = app;
+
