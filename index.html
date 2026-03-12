@@ -4,109 +4,210 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>미래 직업 추천</title>
-  <link rel="stylesheet" href="style.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
   <style>
-    .page {
-      padding-top: 6px !important;
-      padding-bottom: 6px !important;
+    :root {
+      --bg: #0a0e1a;
+      --card: #111827;
+      --border: rgba(99,179,237,0.18);
+      --accent: #63b3ed;
+      --accent2: #7c3aed;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --input-bg: #1e293b;
+      --radius: 14px;
     }
 
- /* 변경 후 */
-    .card.form-card {
-      padding-top: 24px !important;
-}
-    .page-title.center-title {
-      margin-top: 0 !important;
-      margin-bottom: 18px !important;
-}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px 16px 40px;
+      background-image:
+        radial-gradient(ellipse 80% 40% at 50% -10%, rgba(99,179,237,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 30% at 90% 80%, rgba(124,58,237,0.08) 0%, transparent 60%);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding-top: 10px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--accent);
+      background: rgba(99,179,237,0.1);
+      border: 1px solid rgba(99,179,237,0.25);
+      border-radius: 100px;
+      padding: 5px 14px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #e2e8f0 30%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
+    }
 
     .form-grid {
-      gap: 6px !important;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
     .field {
-      gap: 3px !important;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
 
-    .field label {
-      margin: 0 !important;
-      line-height: 1.15 !important;
+    label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.3px;
     }
 
-    input,
+    label span.required {
+      color: var(--accent);
+      margin-left: 2px;
+    }
+
+    input, select {
+      background: var(--input-bg);
+      border: 1px solid rgba(99,179,237,0.15);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.9rem;
+      height: 46px;
+      padding: 0 14px;
+      width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
     select {
-      min-height: 40px !important;
-      height: 40px !important;
-      padding-top: 8px !important;
-      padding-bottom: 8px !important;
+      padding-right: 36px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2363b3ed' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
     }
 
-    /* 변경 후 */
-.primary-btn {
-  min-height: 42px !important;
-  height: 42px !important;
-  margin-top: 12px !important;
-  margin-bottom: 0 !important;
-}
+    input:focus, select:focus {
+      border-color: rgba(99,179,237,0.5);
+      box-shadow: 0 0 0 3px rgba(99,179,237,0.08);
+    }
+
+    input::placeholder { color: #475569; }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4px 0;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: -4px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      height: 52px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      border-radius: 12px;
+      color: #fff;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(99,179,237,0.25);
+    }
+
+    .submit-btn:active { transform: scale(0.98); opacity: 0.9; }
 
     .form-message {
-      margin-top: 4px !important;
-      margin-bottom: 0 !important;
-      min-height: 0 !important;
+      font-size: 0.82rem;
+      color: #f87171;
+      text-align: center;
+      min-height: 20px;
+      margin-top: 8px;
     }
 
-    @media (max-width: 430px) {
-      .page {
-        padding-top: 4px !important;
-        padding-bottom: 4px !important;
-      }
-
-      .card.form-card {
-        padding-top: 6px !important;
-        padding-bottom: 6px !important;
-      }
-
-      .page-title.center-title {
-        margin-bottom: 5px !important;
-      }
-
-      .form-grid {
-        gap: 5px !important;
-      }
-
-      .field {
-        gap: 2px !important;
-      }
-
-      input,
-      select {
-        min-height: 38px !important;
-        height: 38px !important;
-      }
-
-      .primary-btn {
-        min-height: 40px !important;
-        height: 40px !important;
-      }
+    .footer-note {
+      text-align: center;
+      font-size: 0.72rem;
+      color: #334155;
+      margin-top: 20px;
+      letter-spacing: 0.3px;
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="card form-card">
+  <div class="container">
+    <div class="header">
+      <div class="header-badge">AI CAREER FORECAST</div>
+      <h1>미래 직업 추천</h1>
+      <p class="subtitle">성향 분석 기반 · 미래 유망 직업 매칭</p>
+    </div>
 
-      <h1 class="page-title center-title">미래 직업 추천</h1>
-
+    <div class="card">
       <form id="jobForm" class="form-grid">
+
+        <div class="section-label">기본 정보</div>
+
         <div class="field">
-          <label for="name">성명</label>
+          <label for="name">성명 <span class="required">*</span></label>
           <input id="name" name="name" type="text" placeholder="성명을 입력하세요" required>
         </div>
 
         <div class="field">
-          <label for="dob">출생연도 : 아래 학업 계획과 함께 취업시기를 결정하게 됨.</label>
-          <input id="dob" name="dob" type="number" inputmode="numeric" placeholder="2016" required>
+          <label for="dob">출생연도 <span class="required">*</span> <span style="font-weight:400;color:#64748b">— 학업계획과 함께 취업시기 결정</span></label>
+          <input id="dob" name="dob" type="number" inputmode="numeric" placeholder="예) 2010" required>
         </div>
 
         <div class="field">
@@ -138,50 +239,56 @@
         </div>
 
         <div class="field">
-          <label for="ability">학업 계획 : 지능/노력/현재 성적 등을 감안하여 선택. </label>
+          <label for="ability">학업 계획 <span style="font-weight:400;color:#64748b">— 지능/노력/성적 등 감안</span></label>
           <select id="ability" name="ability">
-            <option value="상">석박사 이상 예정 : 출생년도 범위 2000년~2029년 </option>
-            <option value="중">대학/대학원 예정 : 출생년도 범위 2004년~2033년 </option>
-            <option value="하">전문대/직업고 예정 : 출생년도 범위 2008년~2037년 </option>
+            <option value="상">석박사 이상 예정 (출생 2000~2029년)</option>
+            <option value="중">대학/대학원 예정 (출생 2004~2033년)</option>
+            <option value="하">전문대/직업고 예정 (출생 2008~2037년)</option>
           </select>
         </div>
+
+        <div class="divider"></div>
+        <div class="section-label">성향 분석</div>
 
         <div class="field">
           <label for="riasec">직업 흥미 유형 (RIASEC)</label>
           <select id="riasec" name="riasec">
-            <option value="R">만들고 조작하는 걸 좋아해요—기계·컴퓨터·도구를 직접 다루거나 만드는 것이 재미있는 편이에요</option>
-            <option value="I">파고들고 연구하는 걸 좋아해요—왜 그런지 원리를 찾고, 데이터나 과학적 사실을 탐구하는 편이에요</option>
-            <option value="A">만들고 표현하는 걸 좋아해요—그림·영상·디자인·글쓰기 등 새로운 것을 창작하는 편이에요</option>
-            <option value="S">돕고 함께하는 걸 좋아해요—사람들과 어울리고 돌보고 가르치는 일이 보람 있는 편이에요</option>
-            <option value="E">이끌고 도전하는 걸 좋아해요—목표를 세우고 사람들을 설득하거나 이끄는 것이 잘 맞는 편이에요</option>
-            <option value="C">정리하고 꼼꼼히 관리하는 걸 좋아해요—규칙에 따라 정확하게 기록하고 체계적으로 일하는 편이에요</option>
+            <option value="R">🔧 만들고 조작 — 기계·도구를 직접 다루는 게 재미있어요</option>
+            <option value="I">🔬 파고들고 연구 — 원리 탐구, 데이터·과학을 좋아해요</option>
+            <option value="A">🎨 만들고 표현 — 그림·영상·디자인·창작을 즐겨요</option>
+            <option value="S">🤝 돕고 함께 — 사람들과 어울리고 돌보는 게 보람 있어요</option>
+            <option value="E">🚀 이끌고 도전 — 목표 설정, 설득·리더십이 잘 맞아요</option>
+            <option value="C">📋 정리하고 관리 — 규칙대로 꼼꼼하게 체계적으로 일해요</option>
           </select>
         </div>
 
         <div class="field">
-          <label for="big5">개인성향 (Big5)</label>
+          <label for="big5">개인 성향 (Big5)</label>
           <select id="big5" name="big5">
-            <option value="O">새로운 것에 호기심이 많아요—새 아이디어나 변화를 즐기고 상상력이 풍부한 편이에요</option>
-            <option value="C">계획적이고 꼼꼼한 편이에요—목표를 세우고 끝까지 책임감 있게 해내는 편이에요</option>
-            <option value="E">사람들과 어울리는 걸 좋아해요—여럿이 함께하는 환경에서 활발하게 활동하는 편이에요</option>
-            <option value="A">배려심이 많고 협조적이에요—다른 사람을 믿고 돕는 것이 자연스러운 편이에요</option>
-            <option value="N">안전과 위험에 민감한 편이에요—작은 위험도 미리 감지하고 대비하려는 신중한 편이에요</option>
+            <option value="O">✨ 호기심 — 새 아이디어·변화를 즐기고 상상력이 풍부해요</option>
+            <option value="C">📌 계획적 — 목표를 세우고 책임감 있게 끝까지 해내요</option>
+            <option value="E">😊 외향적 — 사람들과 함께하는 환경에서 활발히 활동해요</option>
+            <option value="A">💛 배려심 — 타인을 돕고 협력하는 게 자연스러워요</option>
+            <option value="N">🛡 신중함 — 위험을 미리 감지하고 꼼꼼히 대비해요</option>
           </select>
         </div>
 
-        <button type="submit" class="primary-btn">추천 보기</button>
+        <button type="submit" class="submit-btn">추천 직업 보기 →</button>
       </form>
-
       <p id="formMessage" class="form-message"></p>
     </div>
+
+    <p class="footer-note">취업시기 가능 범위 2030년 ~ 2059년</p>
   </div>
 
   <script>
     document.getElementById('jobForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-
       const formMessage = document.getElementById('formMessage');
+      const btn = e.target.querySelector('button[type=submit]');
       formMessage.textContent = '';
+      btn.textContent = '분석 중...';
+      btn.disabled = true;
 
       const formData = new FormData(e.target);
       const payload = Object.fromEntries(formData.entries());
@@ -192,18 +299,19 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-
         const result = await res.json();
-
         if (!res.ok) {
           formMessage.textContent = result.error || '오류가 발생했습니다.';
+          btn.textContent = '추천 직업 보기 →';
+          btn.disabled = false;
           return;
         }
-
         localStorage.setItem('jobResult', JSON.stringify(result));
         window.location.href = 'result.html';
       } catch (error) {
         formMessage.textContent = '서버 연결 중 오류가 발생했습니다.';
+        btn.textContent = '추천 직업 보기 →';
+        btn.disabled = false;
       }
     });
   </script>
