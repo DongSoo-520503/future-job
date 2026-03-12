@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>추천 결과</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .info-item { min-width: 0; }
+
+    .highlight-box.process-box {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 10px 15px;
+    }
+
+    .job-title {
+      font-size: 1.1rem;
+      color: #1e3a8a;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    h2.highlight-box.process-box {
+      font-size: 1.1rem;
+      margin-top: 20px;
+      padding: 10px 15px;
+    }
+
+    .section-title { font-size: 1.1rem; }
+    .process-title { margin: 6px 0 0 0; font-size: 1rem; font-weight: 700; color: #1f2937; }
+    .process-list { display: flex; flex-direction: column; gap: 10px; margin-top: 0; }
+    .process-item { margin: 0; }
+    .process-item-label { display: block; margin: 0 0 4px 0; font-size: 0.95rem; font-weight: 700; color: #374151; }
+    .process-item-text { margin: 0; font-size: 0.95rem; line-height: 1.6; color: #4b5563; word-break: keep-all; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card result-card">
+      <div class="result-header">
+        <h1 class="page-title center-title">미래 직업 추천 결과</h1>
+      </div>
+      <div id="resultContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem('jobResult'));
+    const resultContent = document.getElementById('resultContent');
+
+    if (!data) {
+      resultContent.innerHTML = `<div class="empty-box"><p>표시할 결과가 없습니다.</p></div>`;
+    } else {
+      resultContent.innerHTML = `
+        <section class="info-grid">
+          <div class="info-item"><span class="info-label">성명</span><span class="info-value">${data.name}</span></div>
+          <div class="info-item"><span class="info-label">국가</span><span class="info-value">${data.country}</span></div>
+          <div class="info-item"><span class="info-label">취업 시기</span><span class="info-value">${data.period}</span></div>
+          <div class="info-item"><span class="info-label">연봉 순위 : 1차 후보군 ${data.candidateCount}개중</span><span class="info-value">${data.salaryRank}위</span></div>
+        </section>
+        <section class="highlight-box process-box">
+          <div class="highlight-label">추천 직업</div>
+          <div class="job-title">${data.job}</div>
+        </section>
+        <section class="content-section">
+          <h2 class="section-title">직업해설</h2>
+          <p class="section-text">${data.description || ''}</p>
+        </section>
+        <section class="content-section">
+          <h2 class="section-title">핵심 전문 지식</h2>
+          <p class="section-text">${data.knowledge || ''}</p>
+        </section>
+        <section class="content-section">
+          <h2 class="section-title">추천 학과/전공</h2>
+          <p class="section-text">${data.major || ''}</p>
+        </section>
+        <section class="content-section">
+          <h2 class="section-title">준비 기간</h2>
+          <p class="section-text">${data.prepPeriod || ''}</p>
+        </section>
+
+        <h2 class="highlight-box process-box">추천 산출 과정</h2>
+
+        <section class="content-section">
+          <div class="process-list">
+            <div class="process-item">
+              <span class="process-item-label">조건 필터링</span>
+              <p class="process-item-text">국가, 시기, 학업 계획 데이터를 기반으로 1차 후보군 ${data.candidateCount}개를 추출하였습니다.</p>
+            </div>
+
+            <div class="process-item">
+              <span class="process-item-label">성향 점수화</span>
+              <p class="process-item-text">직업흥미유형(RIASEC) 적합도 ${data.riasecScore}와 개인성향(Big5) 적합도 ${data.big5Score}를
+60:40 가중평균하여 최종 적합도 ${data.finalScore}를 산출하였습니다.</p>
+            </div>
+
+            <div class="process-item">
+              <span class="process-item-label">최종 선택</span>
+              <p class="process-item-text">최종 적합도 점수가 높은 직업 ${data.topCount}개 중, 연봉순위가 높은 최적의 직업 1종을 선정하였습니다.</p>
+            </div>
+
+            <button type="button" class="sub-btn" onclick="location.href='index.html'">다시 입력하기</button>
+
+          </div>
+        </section>`;
+    }
+  </script>
+
+</body>
+</html>

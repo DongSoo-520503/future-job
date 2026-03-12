@@ -1,0 +1,17 @@
+{
+  "name": "future-job",
+  "version": "1.0.0",
+  "description": "미래 직업 추천 시스템 (RIASEC + Big5 기반)",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "DongSoo",
+  "license": "ISC"
+}
