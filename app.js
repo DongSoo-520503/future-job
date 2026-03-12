@@ -40,6 +40,11 @@ function matchScore(rowCodes, userCodes) {
   return matched ? 1.0 : 0.5;
 }
 
+// 루트 경로에서 index.html 제공
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 app.post('/recommend', (req, res) => {
   const { name, dob, country, ability, riasec, big5 } = req.body;
 
