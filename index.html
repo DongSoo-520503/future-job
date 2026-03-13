@@ -190,15 +190,11 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="header-badge">AI CAREER FORECAST</div>
       <h1>미래 직업 추천</h1>
-      <p class="subtitle">성향 분석 기반 · 미래 유망 직업 매칭</p>
     </div>
 
     <div class="card">
       <form id="jobForm" class="form-grid">
-
-        <div class="section-label">기본 정보</div>
 
         <div class="field">
           <label for="name">성명 <span class="required"></span></label>
@@ -211,7 +207,7 @@
         </div>
 
         <div class="field">
-          <label for="country">국가</label>
+          <label for="country">취업 국가</label>
           <select id="country" name="country">
             <option value="대한민국">대한민국</option>
             <option value="미국">미국</option>
@@ -247,18 +243,15 @@
           </select>
         </div>
 
-        <div class="divider"></div>
-        <div class="section-label">성향 분석</div>
-
         <div class="field">
           <label for="riasec">직업 흥미 유형 (RIASEC)</label>
           <select id="riasec" name="riasec">
-            <option value="R">🔧 만들고 조작 — 기계·도구를 직접 다루는 게 재미있어요</option>
-            <option value="I">🔬 파고들고 연구 — 원리 탐구, 데이터·과학을 좋아해요</option>
-            <option value="A">🎨 만들고 표현 — 그림·영상·디자인·창작을 즐겨요</option>
-            <option value="S">🤝 돕고 함께 — 사람들과 어울리고 돌보는 게 보람 있어요</option>
-            <option value="E">🚀 이끌고 도전 — 목표 설정, 설득·리더십이 잘 맞아요</option>
-            <option value="C">📋 정리하고 관리 — 규칙대로 꼼꼼하게 체계적으로 일해요</option>
+            <option value="R">🔧 만들고 조작 - 기계·도구를 직접 다루는 게 재미있어요</option>
+            <option value="I">🔬 파고들고 연구 - 원리 탐구, 데이터·과학을 좋아해요</option>
+            <option value="A">🎨 만들고 표현 - 그림·영상·디자인·창작을 즐겨요</option>
+            <option value="S">🤝 돕고 함께 - 사람들과 어울리고 돌보는 게 보람 있어요</option>
+            <option value="E">🚀 이끌고 도전 - 목표 설정, 설득·리더십이 잘 맞아요</option>
+            <option value="C">📋 정리하고 관리 - 규칙대로 꼼꼼하게 체계적으로 일해요</option>
           </select>
         </div>
 
@@ -273,12 +266,11 @@
           </select>
         </div>
 
-        <button type="submit" class="submit-btn">추천 직업 보기 →</button>
+        <button type="submit" class="submit-btn" style="margin-top:22px;">추천 직업 보기 →</button>
       </form>
       <p id="formMessage" class="form-message"></p>
     </div>
 
-    <p class="footer-note">취업시기 가능 범위 2030년 ~ 2059년</p>
   </div>
 
   <script>
