@@ -28,7 +28,7 @@
       display: flex;
       align-items: flex-start;
       justify-content: center;
-      padding: 10px 16px 20px;
+      padding: 4px 12px 8px;
       background-image:
         radial-gradient(ellipse 80% 40% at 50% -10%, rgba(99,179,237,0.12) 0%, transparent 70%),
         radial-gradient(ellipse 60% 30% at 90% 80%, rgba(124,58,237,0.08) 0%, transparent 60%);
@@ -41,8 +41,8 @@
 
     .header {
       text-align: center;
-      margin-bottom: 10px;
-      padding-top: 4px;
+      margin-bottom: 4px;
+      padding-top: 0;
     }
 
     .header-badge {
@@ -79,24 +79,24 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 14px 16px;
+      padding: 8px 12px;
       box-shadow: 0 4px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
     }
 
     .form-grid {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 5px;
     }
 
     .field {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
     }
 
     label {
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 500;
       color: var(--text-muted);
       letter-spacing: 0.3px;
@@ -113,8 +113,8 @@
       border-radius: 10px;
       color: var(--text);
       font-family: 'Noto Sans KR', sans-serif;
-      font-size: 0.9rem;
-      height: 40px;
+      font-size: 0.82rem;
+      height: 34px;
       padding: 0 14px;
       width: 100%;
       transition: border-color 0.2s, box-shadow 0.2s;
@@ -174,8 +174,8 @@
       font-size: 0.82rem;
       color: #f87171;
       text-align: center;
-      min-height: 20px;
-      margin-top: 8px;
+      min-height: 0;
+      margin-top: 4px;
     }
 
     .footer-note {
@@ -266,7 +266,7 @@
           </select>
         </div>
 
-        <button type="submit" class="submit-btn" style="margin-top:10px;">추천 직업 보기 →</button>
+        <button type="submit" class="submit-btn" style="margin-top:4px;height:40px;font-size:0.9rem;">추천 직업 보기 →</button>
       </form>
       <p id="formMessage" class="form-message"></p>
     </div>
