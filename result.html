@@ -276,7 +276,6 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="header-badge">RESULT</div>
       <h1>미래 직업 추천 결과</h1>
     </div>
 
@@ -313,20 +312,7 @@
         <div class="job-card">
           <div class="job-tag">추천 직업</div>
           <div class="job-name">${data.job}</div>
-          <div class="score-row">
-            <div class="score-chip">
-              <span class="score-chip-label">RIASEC 적합도</span>
-              <span class="score-chip-value">${data.riasecScore}</span>
-            </div>
-            <div class="score-chip">
-              <span class="score-chip-label">Big5 적합도</span>
-              <span class="score-chip-value">${data.big5Score}</span>
-            </div>
-            <div class="score-chip">
-              <span class="score-chip-label">최종 적합도</span>
-              <span class="score-chip-value green">${data.finalScore}</span>
-            </div>
-          </div>
+
         </div>
 
         <div class="section-card">
@@ -377,10 +363,6 @@
         <a href="index.html" class="back-btn">← 다시 입력하기</a>
       `;
     }
-  </script>
-</body>
-</html>
-`;
   </script>
 </body>
 </html>
